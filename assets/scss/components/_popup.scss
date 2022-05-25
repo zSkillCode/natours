@@ -1,0 +1,131 @@
+.popup {
+    height: 100vh;
+    width: 100%;
+    position: fixed;
+    top: 0;
+    left: 0;
+    background-color: rgba($color-black, .80);
+    z-index: 4000;
+    opacity: 0;
+    visibility: hidden;
+    transition: all .3s;
+
+    &__content {
+        width: 75%;
+        background-color: $color-white;
+        box-shadow: 0 2rem 4rem rgba($color-black, .2);
+        border-radius: 3px;
+        display: table;
+        overflow: hidden;
+        opacity: 0;
+        transform: translate (-50%, -50) scale(.5);
+        transition: all .4s .2s;
+
+        @include respond(tab-land) {
+            width: 80%;
+        }
+    }
+
+    &__left {
+        width: 33.3333333%;
+        display: table-cell;
+
+        @include respond(tab-port) {
+            display: table-row;
+        }
+    }
+
+    &__right {
+        width: 66.66666667%;
+        display: table-cell;
+        vertical-align: middle;
+        padding: 3rem 5rem;
+
+        @include respond(tab-port) {
+            width: 100%;
+        }
+
+        a {
+            @include respond(tab-land) {
+                margin-top: 2rem;
+            }
+        }
+
+        h2 {
+            @include respond(tab-land) {
+                margin-left: 8rem;
+            }
+        }
+
+        h2 {
+            @include respond(tab-land) {
+                text-align: center;
+            }
+        }
+    }
+
+    &__img {
+        display: block;
+        width: 100%;
+
+        @include respond(tab-port) {
+            height: 20rem;
+            float: left;
+            width: 50%;
+        }
+
+        @include respond(tab-land) {
+            height: 25rem;
+        }
+    }
+
+    &__text {
+        font-size: 1.4rem;
+        margin-bottom: 4rem;
+        column-count: 2;
+        column-gap: 4rem;
+        column-rule: 1px solid $color-grey-light-2;
+        hyphens: auto;
+
+        @include respond(tab-port) {
+            float: right;
+            width: 100%;
+            align-content: center;
+        }
+
+        @include respond(phone) {
+            column-count: 2;
+            width: 100%;
+        }
+    }
+
+    // OPEN STATES
+    &:target {
+        opacity: 1;
+        visibility: visible;
+    }
+
+    &:target &__content {
+        opacity: 1;
+        transform: translate (-50%, -50) scale(1);
+    }
+
+    &__close {
+        &:link,
+        &:visited {
+            color: $color-grey-dark;
+            position: absolute;
+            top: 2.5rem;
+            right: 2.5rem;
+            font-size: 3rem;
+            text-decoration: none;
+            display: inline-block;
+            transition: all .2s;
+            line-height: 1;
+        }
+
+        &:hover {
+            color: $color-primary
+        }
+    }
+}
